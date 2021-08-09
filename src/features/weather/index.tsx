@@ -1,0 +1,128 @@
+import { Box, Grid, makeStyles, Typography } from '@material-ui/core';
+import { useAppDispatch, useAppSelector } from 'app/hooks';
+import { Header } from 'components/Common';
+import { Spinner } from 'components/Common/Spinner';
+import { locationActions, selectLocationOptions } from 'features/location/locationSlice';
+import { LocationOption } from 'models';
+import React from 'react';
+import { useEffect } from 'react';
+import WeatherSearch from './components/WeatherSearch';
+import WeatherStatistics from './components/WeatherStatistics';
+import { WeatherWidget } from './components/WeatherWidget';
+import {
+  selectGeneralWeatherInfo,
+  selectWeatherLoading,
+  selectWeatherSixDaysInfo,
+  weatherActions,
+} from './weatherSlice';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'grid',
+    gridTemplateRows: 'auto 1fr',
+    gridTemplateColumns: '1fr',
+    gridTemplateAreas: `"header" "main"`,
+
+    minHeight: '100vh',
+  },
+  header: {
+    gridArea: 'header',
+  },
+  main: {
+    gridArea: 'main',
+    padding: theme.spacing(2, 4),
+  },
+  widgetContain: {
+    backgroundColor: '#7FDBFF',
+    width: '100%',
+    minHeight: '75vh',
+  },
+}));
+export default function WeatherFeature() {
+  const locationOptions = useAppSelector(selectLocationOptions);
+  const weatherSixDays = useAppSelector(selectWeatherSixDaysInfo);
+  const generalWeatherInfo = useAppSelector(selectGeneralWeatherInfo);
+  const weatherLoading = useAppSelector(selectWeatherLoading);
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    if (locationOptions.length === 0) {
+      dispatch(weatherActions.clearWeatherInfo());
+    }
+  }, [dispatch, locationOptions]);
+  const handleSearchChange = (newQuery: string) => {
+    dispatch(locationActions.getLocation(newQuery));
+  };
+  const handleLocationChange = (option: LocationOption | string) => {
+    if (typeof option !== 'string') {
+      dispatch(weatherActions.getWeatherByLocationId(option.value));
+      // we need to reset loaction list when user selected option
+      dispatch(locationActions.resetLocationList());
+    }
+  };
+  const classes = useStyles();
+  return (
+    <Box className={classes.root}>
+      <Box className={classes.header}>
+        <Header />
+      </Box>
+      <Box className={classes.main}>
+        <Box mb={3}>
+          {/* search  */}
+          <WeatherSearch
+            options={locationOptions}
+            onSearchChange={handleSearchChange}
+            onLocationChange={handleLocationChange}
+          />
+          {/* loading */}
+          {weatherLoading && <Spinner />}
+          {/* weather details */}
+          {weatherSixDays.length > 0 && (
+            <Box mb={3} padding={4} mt={4} className={classes.widgetContain}>
+              <Typography variant="h4" color="textSecondary">
+                Location:
+              </Typography>
+              {/* General Weather Info */}
+              {generalWeatherInfo && (
+                <Box mt={4}>
+                  <WeatherStatistics
+                    title={generalWeatherInfo.title}
+                    time={generalWeatherInfo.time}
+                    timeZone={generalWeatherInfo.timezone}
+                    sunrise={generalWeatherInfo.sun_rise}
+                    sunset={generalWeatherInfo.sun_set}
+                  />
+                </Box>
+              )}
+              <Box mt={5}>
+                <Typography variant="h4" color="textSecondary">
+                  Daily:
+                </Typography>
+                {/* show weather 6 days */}
+                <Box mt={2}>
+                  <Grid container spacing={3}>
+                    {weatherSixDays.map((weather) => (
+                      <Grid key={weather.id} item xs={12} sm={6} md={4} lg={2}>
+                        <WeatherWidget
+                          confidence={weather.predictability}
+                          pressure={weather.air_pressure}
+                          visibility={weather.visibility}
+                          humidity={weather.humidity}
+                          date={weather.applicable_date}
+                          weatherStateAbbr={weather.weather_state_abbr}
+                          weatherState={weather.weather_state_name}
+                          temp= {weather.the_temp}
+                          minTemp={weather.min_temp}
+                          maxTemp={weather.max_temp}
+                        />
+                      </Grid>
+                    ))}
+                  </Grid>
+                </Box>
+              </Box>
+            </Box>
+          )}
+        </Box>
+      </Box>
+    </Box>
+  );
+}
