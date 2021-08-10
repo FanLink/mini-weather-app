@@ -6,7 +6,7 @@ import { Weather, WeatherDetails } from 'models';
 import { toast } from 'react-toastify';
 import { ERROR_MESSAGE } from 'constants/constants';
 
-function* getWeatherByLocationId(action: PayloadAction<number>) {
+export function* getWeatherByLocationId(action: PayloadAction<number>) {
   try {
     const response: WeatherDetails = yield call(
       weatherApi.getWeatherByLocationId,

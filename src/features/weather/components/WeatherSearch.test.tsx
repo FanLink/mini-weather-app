@@ -5,8 +5,9 @@ import WeatherSearch from './WeatherSearch';
 
 describe('WeatherSearch', () => {
   const options: LocationOption[] = [{ label: 'test', value: 123 }];
+  const option: any = { label: 'test', value: 123 };
   const onSearchChange = jest.fn();
-  const onLocationChange = jest.fn();
+  const onLocationChange = jest.fn(option);
 
   test('renders WeatherSearch component', () => {
     render(
@@ -16,12 +17,11 @@ describe('WeatherSearch', () => {
         onLocationChange={onLocationChange}
       />
     );
-    // const element = screen.getByRole('combobox');
-    // fireEvent.change(screen.getByTestId(/auto-suggest-location-label/i), {
-    //   target: { value: 'JavaScript' },
-    // });
-    // expect(onSearchChange).toHaveBeenCalledTimes(1);
-    // expect(onLocationChange).toHaveBeenCalledTimes(1);
-    expect(screen.getByText(/Search Weather By City/)).toBeInTheDocument();
+    fireEvent.change(screen.getByLabelText(/Search Weather By City/), {
+      target: option,
+    });
+    expect(onSearchChange).toHaveBeenCalledTimes(1);
+    expect(onSearchChange).toHaveBeenCalledWith('123');
+    expect(screen.getByLabelText(/Search Weather By City/)).toBeInTheDocument();
   });
 });
