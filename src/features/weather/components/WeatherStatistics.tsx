@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-around',
     alignItems: 'flex-start',
 
-    padding: theme.spacing(3),
+    padding: theme.spacing(4),
   }
 }));
 
@@ -46,7 +46,7 @@ export default function WeatherStatistics({ title, time , timeZone,sunrise, suns
       <Paper  className= {classes.paperContainer}>
         <Box className={classes.content}>
           <Typography className={classes.title} color="primary" variant="h4">
-            {title} City
+            {title}
           </Typography>
           <Typography variant="button"> {convertDateAndTime(time)} </Typography>
           <Typography variant="caption"> Time Zone: {timeZone} </Typography>
