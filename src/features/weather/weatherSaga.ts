@@ -8,11 +8,8 @@ import { ERROR_MESSAGE } from 'constants/constants';
 
 export function* getWeatherByLocationId(action: PayloadAction<number>) {
   try {
-    const response: WeatherDetails = yield call(
-      weatherApi.getWeatherByLocationId,
-      action.payload
-    );
-    const consolidatedWeather:Weather[] = response.consolidated_weather;
+    const response: WeatherDetails = yield call(weatherApi.getWeatherByLocationId, action.payload);
+    const consolidatedWeather: Weather[] = response.consolidated_weather;
     const { time, sun_rise, sun_set, timezone_name, title, timezone, location_type } = response;
     yield put(weatherActions.setConsolidatedWeather(consolidatedWeather));
     yield put(
@@ -23,12 +20,12 @@ export function* getWeatherByLocationId(action: PayloadAction<number>) {
         timezone_name,
         title,
         timezone,
-        location_type
+        location_type,
       })
     );
     yield put(weatherActions.getWeatherByLocationIdSuccess());
   } catch (error) {
-    toast.error(`${ERROR_MESSAGE.SEARCH_LOCATION_FAILED} ${error}`)
+    toast.error(`${ERROR_MESSAGE.SEARCH_LOCATION_FAILED} ${error}`);
     yield put(weatherActions.getWeatherByLocationIdFailed());
   }
 }

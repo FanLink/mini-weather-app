@@ -1,45 +1,45 @@
-import { createSelector, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState } from "app/store";
-import {Location } from "models";
+import { createSelector, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { RootState } from 'app/store';
+import { Location } from 'models';
 
-export interface LocationState{
+export interface LocationState {
   loading: boolean;
   list: Location[];
 }
-const initialState: LocationState  = {
+const initialState: LocationState = {
   loading: false,
-  list : []
-}
+  list: [],
+};
 
 const locationSlice = createSlice({
-  name:'location',
+  name: 'location',
   initialState,
   reducers: {
-    getLocation(state, action: PayloadAction<string>){
+    getLocation(state, action: PayloadAction<string>) {
       state.loading = true;
     },
-    getLocationSuccess(state, action: PayloadAction<Location[]>){
+    getLocationSuccess(state, action: PayloadAction<Location[]>) {
       state.list = action.payload;
       state.loading = false;
     },
-    getLocationFailed(state){
+    getLocationFailed(state) {
       state.loading = false;
     },
-    resetLocationList(state){
+    resetLocationList(state) {
       state.list = [];
-    }
-  }
-})
+    },
+  },
+});
 
 // Actions
 export const locationActions = locationSlice.actions;
 //selectors
-  export const selectLocationLoading = (state: RootState) => state.location.loading;
-  export const selectLocationList = (state: RootState) => state.location.list;
-  export const selectLocationOptions = createSelector(selectLocationList, (locationList) =>
+export const selectLocationLoading = (state: RootState) => state.location.loading;
+export const selectLocationList = (state: RootState) => state.location.list;
+export const selectLocationOptions = createSelector(selectLocationList, (locationList) =>
   locationList.map((location) => ({
     label: location.title,
-    value: location.woeid
+    value: location.woeid,
   }))
 );
 // reducer

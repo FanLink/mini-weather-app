@@ -11,11 +11,10 @@ describe('App', () => {
         <App />
       </Provider>
     );
-    
-    // must have header 
+
+    // must have header
     expect(screen.getByText(/Weather App/)).toBeInTheDocument();
     // must have search bar
     expect(screen.getByText(/Search Weather By City/)).toBeInTheDocument();
-    
   });
 });

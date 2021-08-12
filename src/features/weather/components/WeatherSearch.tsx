@@ -16,9 +16,9 @@ export default function WeatherSearch({
   onLocationChange,
 }: WeatherSearchProps) {
   const handleGetOptionLabel = (option: any) => {
-     if(!option) return;
-     return option.label;
-  }
+    if (!option) return;
+    return option.label;
+  };
   const handleOptionChange = (e: ChangeEvent<{}>, option: LocationOption | string) => {
     if (!onLocationChange) return;
     onLocationChange(option);
@@ -30,15 +30,14 @@ export default function WeatherSearch({
   return (
     <Box>
       <Grid container spacing={3}>
-        <Grid item xs={12} md={6} style={{margin: 'auto'}}>
+        <Grid item xs={12} md={6} style={{ margin: 'auto' }}>
           <Autocomplete
             id="auto-suggest-location"
-            onInputChange = {handleInputChange}
-            blurOnSelect
+            onInputChange={handleInputChange}
             freeSolo
             disableClearable
-            options={options || [{label:'a', value: 1}]}
-            getOptionLabel = {handleGetOptionLabel}
+            options={options || [{ label: 'a', value: 1 }]}
+            getOptionLabel={handleGetOptionLabel}
             onChange={handleOptionChange}
             renderInput={(params) => (
               <TextField

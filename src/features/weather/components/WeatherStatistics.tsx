@@ -1,6 +1,6 @@
 import { Box, makeStyles, Paper, Typography } from '@material-ui/core';
 import * as React from 'react';
-import { convertDateAndTime, convertTime,  } from 'utils';
+import { convertDateAndTime, convertTime } from 'utils';
 
 export interface WeatherStatisticsProps {
   title: string;
@@ -36,14 +36,20 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'flex-start',
 
     padding: theme.spacing(4),
-  }
+  },
 }));
 
-export default function WeatherStatistics({ title, time , timeZone,sunrise, sunset}: WeatherStatisticsProps) {
+export default function WeatherStatistics({
+  title,
+  time,
+  timeZone,
+  sunrise,
+  sunset,
+}: WeatherStatisticsProps) {
   const classes = useStyles();
   return (
     <Box className={classes.root}>
-      <Paper  className= {classes.paperContainer}>
+      <Paper className={classes.paperContainer}>
         <Box className={classes.content}>
           <Typography className={classes.title} color="primary" variant="h4">
             {title}
@@ -56,6 +62,6 @@ export default function WeatherStatistics({ title, time , timeZone,sunrise, suns
           <Typography variant="h6"> Sunset: {convertTime(sunset)} </Typography>
         </Box>
       </Paper>
- </Box>
+    </Box>
   );
 }

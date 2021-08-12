@@ -6,7 +6,6 @@ export interface WeatherIconsProps {
   weatherStateAbbr: string;
 }
 
-
 export default function WeatherIcons({ weatherStateAbbr }: WeatherIconsProps) {
   const imgUrl = `url(${getBackground(weatherStateAbbr)})`;
   return (
