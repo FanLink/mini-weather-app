@@ -1,6 +1,6 @@
 import { Box, Grid, makeStyles, Typography } from '@material-ui/core';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
-import { Spinner } from 'components/Common/Spinner';
+import { Spinner } from 'components/Common';
 import { locationActions, selectLocationOptions } from 'features/location/locationSlice';
 import { LocationOption } from 'models';
 import React from 'react';

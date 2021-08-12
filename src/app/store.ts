@@ -4,15 +4,15 @@ import weatherReducer from 'features/weather/weatherSlice';
 import createSagaMiddleware from 'redux-saga';
 import rootSaga from './rootSaga';
 
-const sagaMiddleware = createSagaMiddleware()
+const sagaMiddleware = createSagaMiddleware();
 
 export const store = configureStore({
   reducer: {
     weather: weatherReducer,
-    location: locationReducer
+    location: locationReducer,
   },
-  middleware: (getDefaultMiddleware) =>
-  getDefaultMiddleware().concat(sagaMiddleware),
+  // add Saga middle ware
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(sagaMiddleware),
 });
 sagaMiddleware.run(rootSaga);
 

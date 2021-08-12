@@ -17,10 +17,10 @@ const useStyles = makeStyles((theme: Theme) =>
 export function Spinner() {
   const classes = useStyles();
   return (
-    <Grid  className={classes.root}>
-    <Grid item style={{margin: 'auto'}}>
-       <CircularProgress />
-    </Grid>
+    <Grid id="spinner-component-id" className={classes.root}>
+      <Grid item style={{ margin: 'auto' }}>
+        <CircularProgress />
+      </Grid>
     </Grid>
   );
 }

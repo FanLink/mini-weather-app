@@ -1,3 +1,3 @@
-export * from "./weather";
-export * from "./weatherTest";
-export * from "./locationTest";
+export * from './weather';
+export * from './weatherTest';
+export * from './locationTest';

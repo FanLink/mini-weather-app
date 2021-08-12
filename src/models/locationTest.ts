@@ -19,9 +19,9 @@ export const newLocation: Location[] = [
 ];
 export const previousStateWithLoadingFalse: LocationState = {
   loading: false,
-  list: location || []
+  list: location || [],
 };
 export const previousStateWithLoadingTrue: LocationState = {
   loading: true,
-  list: location || []
+  list: location || [],
 };

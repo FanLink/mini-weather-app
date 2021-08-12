@@ -9,21 +9,21 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   appBar: {
-    backgroundColor: '#1dbed8'
+    backgroundColor: '#1dbed8',
   },
   title: {
     flexGrow: 1,
-  }
+  },
 }));
 
-export  function Header() {
+export function Header() {
   const classes = useStyles();
   return (
     <div className={classes.root}>
       <AppBar position="static" className={classes.appBar}>
         <Toolbar>
           <Typography variant="h6" className={classes.title} color="inherit">
-           Weather App
+            Weather App
           </Typography>
         </Toolbar>
       </AppBar>

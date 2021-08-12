@@ -1,12 +1,12 @@
-export interface Location{
+export interface Location {
   title: string;
   location_type: string;
   woeid: number;
   latt_long: string;
 }
 export interface LocationOption {
-  label: string,
-  value: number
+  label: string;
+  value: number;
 }
 
 export interface Weather {
@@ -43,5 +43,4 @@ export interface WeatherDetails {
   woeid: number;
   latt_long: string;
   timezone: string;
-
 }
