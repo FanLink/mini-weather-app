@@ -12,6 +12,7 @@ describe('WeatherSearch', () => {
   test('renders WeatherSearch component', () => {
     render(
       <WeatherSearch
+        loading = {true}
         options={options}
         onSearchChange={onSearchChange}
         onLocationChange={onLocationChange}
@@ -23,5 +24,6 @@ describe('WeatherSearch', () => {
     expect(onSearchChange).toHaveBeenCalledTimes(1);
     expect(onSearchChange).toHaveBeenCalledWith('123');
     expect(screen.getByLabelText(/Search Weather By City/)).toBeInTheDocument();
+    expect(screen.getByText(/Loading…/)).toBeInTheDocument();
   });
 });
