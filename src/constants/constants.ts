@@ -1,5 +1,7 @@
 export const AXIOS_CLIENT = {
-  BASE_URL: 'https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api',
+  // Because Meta Weathers blocks CORS, so I use thingproxy prefix for CORS Proxies 
+  // referecce: https://github.com/Freeboard/thingproxy
+  BASE_URL: 'https://thingproxy.freeboard.io/fetch/https://www.metaweather.com/api',
 };
 export const META_WEATHER = {
   IMG_URL: 'https://www.metaweather.com/static/img/weather',

@@ -3,7 +3,7 @@ import axiosClient from './axiosClient';
 
 const weatherApi = {
   locationSearch(query: string): Promise<Location[]> {
-    const url = query ? `/location/search/?query=${query}` : `/location/search/?query=""`;
+    const url = `/location/search/?query=${query}`;
     return axiosClient.get(url);
   },
   getWeatherByLocationId(woeid: number): Promise<WeatherDetails> {

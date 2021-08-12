@@ -2,6 +2,10 @@
 The application  can display a daily weather forecast of the selected city.
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), 
 using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+
+### BLOCK CORS:
+Because Meta Weathers blocks CORS, so I use thingproxy prefix for CORS Proxies 
+referecce: https://github.com/Freeboard/thingproxy
 ### FEATURE  
 - LOCATION FEATURE
   - Find locations by search keys

@@ -36,7 +36,6 @@ export default function WeatherSearch({
             onInputChange={handleInputChange}
             disableClearable
             options={options}
-            loading
             getOptionLabel={handleGetOptionLabel}
             onChange={handleOptionChange}
             noOptionsText = 'No Cities'
