@@ -34,11 +34,4 @@ describe('location reducer', () => {
     );
     expect(actual.loading).toEqual(false);
   });
-  it('should handle action resetLocationList', () => {
-    const actual = locationReducer(
-      previousStateWithLoadingFalse,
-      locationActions.resetLocationList()
-    );
-    expect(actual.list).toEqual([]);
-  });
 });

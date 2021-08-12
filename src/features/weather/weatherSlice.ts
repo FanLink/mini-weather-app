@@ -50,11 +50,7 @@ const weatherSlice = createSlice({
     },
     setGeneralWeatherInfo(state, action: PayloadAction<GeneralWeatherInfo>) {
       state.generalWeatherInfo = action.payload;
-    },
-    clearWeatherInfo(state) {
-      state.consolidatedWeather = [];
-      state.generalWeatherInfo = initialGeneralWeatherInfo;
-    },
+    }
   },
 });
 

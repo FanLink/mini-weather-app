@@ -15,6 +15,6 @@ describe('App', () => {
     // must have header
     expect(screen.getByText(/Weather App/)).toBeInTheDocument();
     // must have search bar
-    expect(screen.getByText(/Search Weather By City/)).toBeInTheDocument();
+    expect(screen.getByLabelText(/Search Weather By City/)).toBeInTheDocument();
   });
 });

@@ -4,7 +4,6 @@ import { Spinner } from 'components/Common';
 import { locationActions, selectLocationOptions } from 'features/location/locationSlice';
 import { LocationOption } from 'models';
 import React from 'react';
-import { useEffect } from 'react';
 import WeatherSearch from './components/WeatherSearch';
 import WeatherStatistics from './components/WeatherStatistics';
 import { WeatherWidget } from './components/WeatherWidget';
@@ -28,19 +27,13 @@ export default function WeatherFeature() {
   const generalWeatherInfo = useAppSelector(selectGeneralWeatherInfo);
   const weatherLoading = useAppSelector(selectWeatherLoading);
   const dispatch = useAppDispatch();
-  useEffect(() => {
-    if (locationOptions.length === 0) {
-      dispatch(weatherActions.clearWeatherInfo());
-    }
-  }, [dispatch, locationOptions]);
+
   const handleSearchChange = (newQuery: string) => {
     dispatch(locationActions.getLocation(newQuery));
   };
   const handleLocationChange = (option: LocationOption | string) => {
     if (typeof option !== 'string') {
       dispatch(weatherActions.getWeatherByLocationId(option.value));
-      // we need to reset loaction list when user selected option
-      dispatch(locationActions.resetLocationList());
     }
   };
   const classes = useStyles();
