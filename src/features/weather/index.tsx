@@ -29,6 +29,7 @@ export default function WeatherFeature() {
   const dispatch = useAppDispatch();
 
   const handleSearchChange = (newQuery: string) => {
+    if (!newQuery) return;
     dispatch(locationActions.getLocation(newQuery));
   };
   const handleLocationChange = (option: LocationOption | string) => {
@@ -48,7 +49,7 @@ export default function WeatherFeature() {
       {/* loading */}
       {weatherLoading && <Spinner />}
       {/* weather details */}
-      {weatherSixDays.length > 0 && (
+      {weatherSixDays.length > 0 && !weatherLoading && (
         <Box mb={3} padding={4} mt={4} className={classes.widgetContain}>
           <Typography variant="h4" color="textSecondary">
             Location:

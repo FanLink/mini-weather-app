@@ -1,9 +1,7 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { AXIOS_CLIENT } from 'constants/constants';
-
 const axiosClient = axios.create({
-  baseURL: AXIOS_CLIENT.BASE_URL,
-  // headers: {'Access-Control-Allow-Origin': '*' }
+   baseURL: AXIOS_CLIENT.BASE_URL
 });
 // Add a request interceptor
 axiosClient.interceptors.request.use(
