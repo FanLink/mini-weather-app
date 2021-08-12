@@ -25,9 +25,6 @@ const locationSlice = createSlice({
     getLocationFailed(state) {
       state.loading = false;
     },
-    resetLocationList(state) {
-      state.list = [];
-    },
   },
 });
 

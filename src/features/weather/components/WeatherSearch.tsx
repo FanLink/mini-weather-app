@@ -34,17 +34,18 @@ export default function WeatherSearch({
           <Autocomplete
             id="auto-suggest-location"
             onInputChange={handleInputChange}
-            freeSolo
             disableClearable
-            options={options || [{ label: 'a', value: 1 }]}
+            options={options}
+            loading
             getOptionLabel={handleGetOptionLabel}
             onChange={handleOptionChange}
+            noOptionsText = 'No Cities'
             renderInput={(params) => (
               <TextField
                 {...params}
                 label="Search Weather By City"
                 margin="normal"
-                variant="standard"
+                variant="outlined"
                 InputProps={{ ...params.InputProps, type: 'search' }}
               />
             )}
