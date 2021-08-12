@@ -1,11 +1,19 @@
-### Mini Weather App'
-The application  can display a daily weather forecast of the selected city.
+### Mini Weather App
+The application  can display a daily weather forecast in the selected city.
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), 
 using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
 
 ### BLOCK CORS:
-Because Meta Weathers blocks CORS, so I use thingproxy prefix for CORS Proxies 
-referecce: https://github.com/Freeboard/thingproxy
+Meta Weathers blocks CORS, so I use thingproxy prefix for CORS Proxies 
+- Referecce: https://github.com/Freeboard/thingproxy.
+- Because of intial config time,so the first request has pending time.
+### API
+- Search location api:
+  - Help to search location id by string query
+  - return the data response, which includes Woeid.
+- Get Weather By Location api:
+  - Using the Woeid, which found from search location api
+  - Get weather with Woied  
 ### FEATURE  
 - LOCATION FEATURE
   - Find locations by search keys
@@ -16,9 +24,14 @@ referecce: https://github.com/Freeboard/thingproxy
   - Search Weather by location id
   - Component
     - WeatherIcons
+        - support render Weather States icon
     - WeatherSearch
+        - firstly, searching location/city by string query and showing loactionOptions/suggestions.
+        - after user selected options, will dispatch to get Weather Deatails in the selected location.  
     - WeatherStatistics
+        - suport render about general weather infomations.
     - WeatherWidget
+        - support render daily (6 days) weather forecast
   - weather slice
     - loading
     - consolidatedWeather

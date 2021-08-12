@@ -17,5 +17,6 @@ export function* handleSearchDebound(action: PayloadAction<string>) {
 }
 
 export default function* locationSaga() {
+  // avoid call request api many times when user is typing in search bar.
   yield debounce(500, locationActions.getLocation.type, handleSearchDebound);
 }

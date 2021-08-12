@@ -5,12 +5,14 @@ import React from 'react';
 import { ChangeEvent } from 'react';
 
 export interface WeatherSearchProps {
+  loading: boolean;
   options: LocationOption[];
   onSearchChange: (newQuery: string) => void;
   onLocationChange: (option: LocationOption | string) => void;
 }
 
 export default function WeatherSearch({
+  loading,
   options,
   onSearchChange,
   onLocationChange,
@@ -33,12 +35,13 @@ export default function WeatherSearch({
         <Grid item xs={12} md={6} style={{ margin: 'auto' }}>
           <Autocomplete
             id="auto-suggest-location"
+            loading={loading}
             onInputChange={handleInputChange}
             disableClearable
             options={options}
             getOptionLabel={handleGetOptionLabel}
             onChange={handleOptionChange}
-            noOptionsText = 'No Cities'
+            noOptionsText="No Cities"
             renderInput={(params) => (
               <TextField
                 {...params}

@@ -3,11 +3,11 @@ import axiosClient from './axiosClient';
 
 const weatherApi = {
   locationSearch(query: string): Promise<Location[]> {
-    const url = `/location/search/?query=${query}`;
+    const url = `/search/?query=${query}`;
     return axiosClient.get(url);
   },
   getWeatherByLocationId(woeid: number): Promise<WeatherDetails> {
-    const url = `/location/${woeid}`;
+    const url = `/${woeid}`;
     return axiosClient.get(url);
   },
 };

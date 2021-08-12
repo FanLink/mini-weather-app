@@ -1,7 +1,11 @@
 import { Box, Grid, makeStyles, Typography } from '@material-ui/core';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { Spinner } from 'components/Common';
-import { locationActions, selectLocationOptions } from 'features/location/locationSlice';
+import {
+  locationActions,
+  selectLocationLoading,
+  selectLocationOptions,
+} from 'features/location/locationSlice';
 import { LocationOption } from 'models';
 import React from 'react';
 import WeatherSearch from './components/WeatherSearch';
@@ -22,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 export default function WeatherFeature() {
+  const locationLoading = useAppSelector(selectLocationLoading);
   const locationOptions = useAppSelector(selectLocationOptions);
   const weatherSixDays = useAppSelector(selectWeatherSixDaysInfo);
   const generalWeatherInfo = useAppSelector(selectGeneralWeatherInfo);
@@ -42,6 +47,7 @@ export default function WeatherFeature() {
     <Box mb={3}>
       {/* search  */}
       <WeatherSearch
+        loading={locationLoading}
         options={locationOptions}
         onSearchChange={handleSearchChange}
         onLocationChange={handleLocationChange}
