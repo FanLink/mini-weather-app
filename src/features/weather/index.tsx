@@ -33,10 +33,12 @@ export default function WeatherFeature() {
   const weatherLoading = useAppSelector(selectWeatherLoading);
   const dispatch = useAppDispatch();
 
+  // Callback fired when the input value changes.
   const handleSearchChange = (newQuery: string) => {
     if (!newQuery) return;
     dispatch(locationActions.getLocation(newQuery));
   };
+  // Callback fired when the option changes.
   const handleLocationChange = (option: LocationOption | string) => {
     if (typeof option !== 'string') {
       dispatch(weatherActions.getWeatherByLocationId(option.value));
@@ -79,7 +81,7 @@ export default function WeatherFeature() {
             {/* show weather 6 days */}
             <Box mt={2}>
               <Grid container spacing={3}>
-                {weatherSixDays.map((weather) => (
+                {weatherSixDays?.map((weather) => (
                   <Grid key={weather.id} item xs={12} sm={6} md={4} lg={2}>
                     <WeatherWidget
                       confidence={weather.predictability}
