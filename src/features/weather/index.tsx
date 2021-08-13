@@ -38,10 +38,8 @@ export default function WeatherFeature() {
     dispatch(locationActions.getLocation(newQuery));
   };
   // Callback fired when the option changes.
-  const handleLocationChange = (option: LocationOption | string) => {
-    if (typeof option !== 'string') {
-      dispatch(weatherActions.getWeatherByLocationId(option.value));
-    }
+  const handleLocationChange = (option: LocationOption) => {
+      dispatch(weatherActions.getWeatherByLocationId(option?.value));
   };
   const classes = useStyles();
   return (
