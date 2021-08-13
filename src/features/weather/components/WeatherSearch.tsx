@@ -8,7 +8,7 @@ export interface WeatherSearchProps {
   loading: boolean;
   options: LocationOption[];
   onSearchChange: (newQuery: string) => void;
-  onLocationChange: (option: LocationOption | string) => void;
+  onLocationChange: (option: LocationOption) => void;
 }
 
 export default function WeatherSearch({
@@ -21,7 +21,7 @@ export default function WeatherSearch({
     if (!option) return;
     return option.label;
   };
-  const handleOptionChange = (e: ChangeEvent<{}>, option: LocationOption | string) => {
+  const handleOptionChange = (e: ChangeEvent<{}>, option: LocationOption) => {
     if (!onLocationChange) return;
     onLocationChange(option);
   };
@@ -41,7 +41,8 @@ export default function WeatherSearch({
             options={options}
             getOptionLabel={handleGetOptionLabel}
             onChange={handleOptionChange}
-            getOptionSelected = {(option, value) => option?.value === value?.value}
+            // beacause LocationOptions always changes, so I disabled check getOptionSelected
+            getOptionSelected={(option, value) => true} 
             noOptionsText="No Cities"
             renderInput={(params) => (
               <TextField
