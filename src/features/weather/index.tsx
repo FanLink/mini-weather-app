@@ -35,7 +35,6 @@ export default function WeatherFeature() {
 
   // Callback fired when the input value changes.
   const handleSearchChange = (newQuery: string) => {
-    if (!newQuery) return;
     dispatch(locationActions.getLocation(newQuery));
   };
   // Callback fired when the option changes.

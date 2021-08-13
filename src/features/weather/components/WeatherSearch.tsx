@@ -41,7 +41,7 @@ export default function WeatherSearch({
             options={options}
             getOptionLabel={handleGetOptionLabel}
             onChange={handleOptionChange}
-            getOptionSelected = {(option, value) => option.value === value.value}
+            getOptionSelected = {(option, value) => option?.value === value?.value}
             noOptionsText="No Cities"
             renderInput={(params) => (
               <TextField
